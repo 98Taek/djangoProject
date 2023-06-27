@@ -58,8 +58,9 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            # os.path.join(BASE_DIR, 'templates'),
-            # 'bookmark/templates/bookmark_list',
+            'templates',
+            'blog/templates/blog',
+            'bookmark/templates/bookmark',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -72,6 +73,8 @@ TEMPLATES = [
         },
     },
 ]
+
+# TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
