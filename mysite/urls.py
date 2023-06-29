@@ -20,13 +20,13 @@ from django.urls import path, include
 
 from bookmark.views import BookmarkLV, BookmarkDV
 from mysite import settings
-from mysite.views import HomeView
+from mysite.views import HomeView, UserCreateView, UserCreateDoneTV
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/register/', UserCreateView.as_view(), name='register'),
-    path('accounts/register/done', UserCreateDontTV.as_view(), name='register_done'),
+    path('accounts/register/done', UserCreateDoneTV.as_view(), name='register_done'),
 
     path('', HomeView.as_view(), name='home'),
     path('blog/', include('blog.urls')),
