@@ -50,9 +50,9 @@
                 <a href="#" class="nav-link disabled" tabindex="-1">Disabled</a>
             </li>
             <li class="nav-item dropdown">
-                {% if user.id_active %}
-                    <a href="#" class="nav-item dropdown-toggle text-white" data-toggle="dropdown">
-                        <i class="fa fas-user"></i>&emsp;{% firstof user.get_short_name user.get_username %}
+                {% if user.is_active %}
+                    <a href="#" class="nav-link dropdown-toggle text-white" data-toggle="dropdown">
+                        <i class="fas fa-user"></i>&ensp;{% firstof user.get_short_name user.get_username %}&ensp;
                     </a>
                     <div class="dropdown-menu">
                         <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
