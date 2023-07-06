@@ -1,6 +1,9 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
+from mysite.views import OwnerOnlyMixin
 from photo.models import Album, Photo
 
 
@@ -15,3 +18,43 @@ class AlbumDV(DetailView):
 
 class PhotoDV(DetailView):
     model = Photo
+
+
+class AlbumPhotoCV(CreateView):
+    pass
+
+
+class AlbumChangeLV(ListView):
+    pass
+
+
+class AlbumPhotoUV(UpdateView):
+    pass
+
+
+class AlbumPhotoDelV(DeleteView):
+    pass
+
+
+class PhotoCV(LoginRequiredMixin, CreateView):
+    model = Photo
+    fields = ('album', 'title', 'image', 'description')
+    success_url = reverse_lazy('photo:index')
+
+
+class PhotoChangeLV(LoginRequiredMixin, ListView):
+    model = Photo
+    template_name = 'photo/photo_change_list.html'
+
+    def get_queryset(self):
+        return Photo.objects.filter(owner=self.request.user)
+
+
+class PhotoUV(OwnerOnlyMixin, UpdateView):
+    model = Photo
+    success_url = reverse_lazy('photo:index')
+
+
+class PhotoDelV(OwnerOnlyMixin, DetailView):
+    model = Photo
+    success_url = reverse_lazy('photo:index')
