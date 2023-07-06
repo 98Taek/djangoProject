@@ -12,7 +12,7 @@ urlpatterns = [
 
     path('album/add/', views.AlbumPhotoCV.as_view(), name='album_add'),
     path('album/change/', views.AlbumChangeLV.as_view(), name='album_change'),
-    path('album/<int:pk>/update/', views.AlbumPhotoUV.as_view(), name='album_change'),
+    path('album/<int:pk>/update/', views.AlbumPhotoUV.as_view(), name='album_update'),
     path('album/<int:pk>/delete/', views.AlbumPhotoDelV.as_view(), name='album_delete'),
 
     path('photo/add/', views.PhotoCV.as_view(), name='photo_add'),
