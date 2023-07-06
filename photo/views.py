@@ -24,16 +24,21 @@ class AlbumPhotoCV(CreateView):
     pass
 
 
-class AlbumChangeLV(ListView):
-    pass
+class AlbumChangeLV(LoginRequiredMixin, ListView):
+    model = Album
+    template_name = 'photo/album_change_list.html'
+
+    def get_queryset(self):
+        return Album.objects.filter(owner=self.request.user)
 
 
 class AlbumPhotoUV(UpdateView):
     pass
 
 
-class AlbumPhotoDelV(DeleteView):
-    pass
+class AlbumPhotoDelV(OwnerOnlyMixin, DeleteView):
+    model = Album
+    success_url = reverse_lazy('photo:index')
 
 
 class PhotoCV(LoginRequiredMixin, CreateView):
